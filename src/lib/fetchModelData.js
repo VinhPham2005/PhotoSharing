@@ -5,8 +5,18 @@
  *
  */
 function fetchModel(url) {
-  const models = null;
-  return models;
+  const api = 'https://cf4ldg-8080.csb.app' + url;
+  return fetch(api)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
+      throw error;
+    });
 }
 
 export default fetchModel;
